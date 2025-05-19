@@ -5,7 +5,7 @@ export function MediaControls() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(60);
   const [isMuted, setIsMuted] = useState(false);
-  const [currentTrack, setCurrentTrack] = useState({
+  const [currentTrack] = useState({  // Removed setCurrentTrack
     title: 'Driving Home',
     artist: 'Road Trip Band',
   });

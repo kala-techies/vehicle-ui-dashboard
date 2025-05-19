@@ -10,10 +10,10 @@ import { WarningPanel } from '../WarningPanel/WarningPanel';
 
 export function Dashboard() {
   const [speed, setSpeed] = useState(0);
-  const [fuelLevel, setFuelLevel] = useState(75);
+  const [fuelLevel] = useState(75);  // Removed setFuelLevel
   const [turnSignal, setTurnSignal] = useState<'left' | 'right' | 'none'>('none');
-  const [batteryLevel, setBatteryLevel] = useState(90);
-  const [headlightsOn, setHeadlightsOn] = useState(false);
+  const [batteryLevel] = useState(90);  // Removed setBatteryLevel
+  const [headlightsOn] = useState(false);  // Removed setHeadlightsOn
   const [warnings, setWarnings] = useState<string[]>([]);
 
   const simulateSpeedChange = () => {
