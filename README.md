@@ -1,173 +1,162 @@
 # 🚗 Vehicle UI Dashboard
 
-A **component-based dashboard UI** for vehicle systems — designed to help **UI developers** and **DevOps engineers** collaborate and gain hands-on experience building and deploying modern front-end applications with a complete CI/CD pipeline.
+A **component-driven** React + Nx monorepo that simulates a modern vehicle dashboard UI.  
+Designed to give **frontend beginners** and **DevOps/Infra engineers** hands-on experience building, testing, and deploying a real-world front-end application with a full CI/CD pipeline.
 
-> ✅ Whether you're a **frontend beginner**, a **DevOps practitioner**, or an **infra automation enthusiast**, this project gives you a real-world playground to practice and contribute.
-
-**🔗 GitHub Repo:** [https://github.com/kala-techies/vehicle-ui-dashboard](https://github.com/kala-techies/vehicle-ui-dashboard)
+🔗 **Repository:** https://github.com/kala-techies/vehicle-ui-dashboard  
+📧 **Contact:** [connectwithkala18@gmail.com](mailto:connectwithkala18@gmail.com)
 
 ---
 
 ## 🧠 Project Purpose
 
-- Enable UI developers to build, test, and ship components in a real-world setup
-- Help DevOps engineers implement CI/CD pipelines with full security and deployment strategy
-- Encourage collaboration across UI, DevOps, Infra, and Backend contributors
-- Provide modular, production-style architecture with room for growth
-
----
-
-## 📸 Demo
-
-> Storybook and screenshots will be available soon.
+- **UI Developers**: Build and test reusable dashboard components (speedometer, fuel gauge, climate control, etc.)  
+- **DevOps Engineers**: Implement and secure a multi-stage GitHub Actions CI/CD pipeline  
+- **Infra Engineers**: Provision cloud resources via Azure Bicep, Terraform, or Pulumi  
+- **Backend Developers**: (Optional) Add or mock APIs for telemetry data  
 
 ---
 
 ## 🧰 Tech Stack
 
-| Layer                | Technology Used                      |
-|----------------------|---------------------------------------|
-| UI Framework         | React + Nx Monorepo                   |
-| Styling              | TailwindCSS                           |
-| Component Library    | Storybook                             |
-| Unit Testing         | Jest                                  |
-| CI/CD                | GitHub Actions                        |
-| Static Analysis      | SonarQube, ESLint                     |
-| Dependency Scanning  | Snyk / BlackDuck                      |
-| Infra-as-Code        | Bicep, Terraform, Pulumi              |
-| Deployment Targets   | Azure (can be extended to others)     |
+| Layer                | Technologies & Tools                     |
+|----------------------|-------------------------------------------|
+| **UI Framework**     | React, TypeScript, Nx Monorepo            |
+| **Styling**          | TailwindCSS                               |
+| **Components**       | Storybook                                 |
+| **Unit Testing**     | Jest                                      |
+| **CI/CD**            | GitHub Actions                            |
+| **Static Analysis**  | ESLint, Prettier, SonarQube               |
+| **Dependency Scan**  | Snyk, BlackDuck                           |
+| **Infra as Code**    | Azure Bicep, Terraform, Pulumi            |
+| **Deployment Target**| Azure App Service (or Static Web Apps)    |
 
 ---
 
-## 🧑‍💻 Local Setup Instructions
+## 🚀 Local Setup
 
-### ✅ Prerequisites
+### 1. Prerequisites
 
-Install these tools **before cloning** the project:
+| Tool              | Version       | Install Link                                                       |
+|-------------------|---------------|---------------------------------------------------------------------|
+| **Node.js**       | 18.x LTS      | https://nodejs.org/en/download/                                     |
+| **npm**           | 9.x or above  | Comes bundled with Node.js                                         |
+| **Git**           | Latest        | https://git-scm.com/downloads                                       |
+| **Nx CLI**        | ^17.x         | `npm install -g nx`                                                 |
+| **Azure CLI**     | Optional      | https://aka.ms/InstallAzureCli                                      |
+| **Pulumi / Terraform** | Optional | https://pulumi.com / https://developer.hashicorp.com/terraform/downloads |
 
-| Tool               | Version            | Installation Link                                      |
-|--------------------|--------------------|---------------------------------------------------------|
-| Node.js            | 18.x LTS           | https://nodejs.org/en/download/                        |
-| npm                | 9.x or higher      | Comes with Node.js                                     |
-| Git                | Latest             | https://git-scm.com/downloads                          |
-| Nx CLI             | ^17.x              | `npm install -g nx`                                    |
-| Azure CLI          | (Optional)         | https://learn.microsoft.com/en-us/cli/azure/install-azure-cli |
-| Pulumi / Terraform | (Optional)         | https://www.pulumi.com / https://developer.hashicorp.com/terraform/downloads |
+(Optional) Add a `.nvmrc` file in your repo root with `18.17.1` so that `nvm use` pins the correct Node version.
 
----
-
-### 🔧 Clone & Start the App
+### 2. Clone & Install
 
 ```bash
-# 1. Clone the repo
+# Clone your fork
 git clone https://github.com/kala-techies/vehicle-ui-dashboard.git
 cd vehicle-ui-dashboard
 
-# 2. Install dependencies
+# Install dependencies
 npm install
-
-# 3. Start the development server
-npm start
 ````
 
-By default, the app runs at: [http://localhost:4200](http://localhost:4200)
+### 3. Run Locally
+
+```bash
+# Start the development server
+npm start
+```
+
+Open your browser at `http://localhost:4200`.
 
 ---
 
-## 🔍 Useful Scripts
+## 🔍 Available Scripts
 
-| Command            | Purpose                                |
-| ------------------ | -------------------------------------- |
-| `npm start`        | Run development server                 |
-| `npm run build`    | Build the production app               |
-| `npm run lint`     | Lint the code using ESLint             |
-| `npm test`         | Run unit tests with Jest               |
-| `npx nx storybook` | Launch Storybook UI component explorer |
-
----
-
-## ⚙️ CI/CD Workflow (GitHub Actions)
-
-> A complete pipeline for frontend apps with security and deployment layers.
-
-**Pipeline Stages:**
-
-1. Checkout Code
-2. Install Dependencies
-3. Build Frontend
-4. Linting
-5. Unit Tests
-6. Nx Affected Check (optional)
-7. Static Code Analysis (SonarQube)
-8. Dependency & License Scan (Snyk / BlackDuck)
-9. Build & Deploy Storybook
-10. Build Infrastructure Code (Bicep / Terraform / Pulumi)
-11. Deploy Infrastructure
-12. Deploy to Dev Environment
-13. Deploy to Preview / Integration
-14. Create Version Tag
-15. Deploy to Production
-16. End-to-End Tests (optional)
-
-> 🔐 All CI stages follow **security-first** principles and use scanning tools to flag vulnerabilities early.
+| Command            | Description                           |
+| ------------------ | ------------------------------------- |
+| `npm start`        | Run the app in development mode       |
+| `npm run build`    | Build the app for production          |
+| `npm run lint`     | Lint code with ESLint                 |
+| `npm test`         | Run Jest unit tests                   |
+| `npx nx storybook` | Launch Storybook (component explorer) |
 
 ---
 
-## 🏗️ Infra-as-Code Contributions
+## ⚙️ CI/CD Workflow
 
-This project welcomes **infra-as-code contributions** using any of the following:
+This project’s GitHub Actions pipeline has **18 stages**, including:
 
-* ✅ Azure Bicep (starter templates available)
-* ✅ Terraform modules (WIP)
-* ✅ Pulumi (WIP)
+1. **Checkout Code**
+2. **Install Dependencies**
+3. **Build Frontend**
+4. **Lint Code**
+5. **Run Unit Tests**
+6. **Nx Affected** (optional)
+7. **Static Analysis** with SonarQube
+8. **Dependency & License Scan** (Snyk / BlackDuck)
+9. **Build Storybook**
+10. **Deploy Storybook**
+11. **Build Infrastructure** (Bicep / Terraform / Pulumi)
+12. **Deploy Infra to Azure**
+13. **Deploy to Development**
+14. **Deploy to Preview/Integration**
+15. **Create Version Tag**
+16. **Deploy to Integration Environment**
+17. **Run E2E Tests** (optional)
+18. **Deploy to Production**
 
-You can help us build cross-platform provisioning setups!
-
----
-
-## 🖥️ Backend Developers Welcome!
-
-If you'd like to:
-
-* Build backend mock services
-* Integrate with real APIs
-* Set up GraphQL or REST APIs
-
-You’re encouraged to join and contribute your services to this frontend platform.
-
----
-
-## 🙌 How to Contribute
-
-We love contributions!
-
-You can contribute in one or more areas:
-
-* 👩‍🎨 UI Components / Features
-* 🚀 CI/CD Improvements
-* 🔐 Security Enhancements
-* ☁️ Infra Automation (Pulumi, Terraform, Bicep)
-* 🧪 Tests (unit/e2e)
-* 🛠️ Backend APIs
-
-> 📚 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) and [CODE\_OF\_CONDUCT.md](./CODE_OF_CONDUCT.md) before contributing.
+Each stage enforces a security-first approach and fails fast on any vulnerability.
 
 ---
 
-## 💬 Community
+## 🏗️ Infrastructure as Code
 
-Got questions or ideas?
+Contributions welcome for any of these IaC tools:
 
-Start a [GitHub Discussion](https://github.com/kala-techies/vehicle-ui-dashboard/discussions) or open an issue.
+* **Azure Bicep** (see `infra/bicep/`)
+* **Terraform** modules (coming soon)
+* **Pulumi** stacks (coming soon)
 
----
-
-## 📃 License
-
-This project is licensed under the [MIT License](./LICENSE)
+Feel free to add or improve provisioning scripts!
 
 ---
 
-Let’s build and scale this vehicle dashboard — together!
-From **UI development** to **CI/CD** to **cloud provisioning**, there’s room for all tech tracks here. 🌟
+## 🌐 Backend Integration (Optional)
 
+To simulate or implement real telemetry:
+
+* **Node.js** + **Express** mock server
+* **REST** or **GraphQL** APIs
+* Deploy alongside the front-end or as a separate GitHub Actions job
+
+---
+
+## 🙌 Contributing
+
+We welcome contributions in all areas:
+
+* 🎨 UI Components / Storybook
+* 🚀 CI/CD Workflows / GitHub Actions
+* 🔐 Security Scanning (Snyk, SonarQube)
+* ☁️ IaC (Azure Bicep, Terraform, Pulumi)
+* 🧪 Testing (unit & E2E)
+* 🌐 Backend (mock or real APIs)
+
+Please read our [CONTRIBUTING.md](./CONTRIBUTING.md) and [CODE\_OF\_CONDUCT.md](./CODE_OF_CONDUCT.md) before starting.
+
+---
+
+## 💬 Community & Support
+
+Have questions or ideas?
+Start a [Discussion](https://github.com/kala-techies/vehicle-ui-dashboard/discussions) or open an Issue.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](./LICENSE).
+
+---
+
+> Let’s build this Vehicle Dashboard together — from **UI** to **DevOps** to **Cloud**! 🚘💡
