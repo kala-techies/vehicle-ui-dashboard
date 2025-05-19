@@ -1,86 +1,37 @@
-name: CI/CD Pipeline
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        cache: 'npm'
-    
-    - name: Install Dependencies
-      run: npm ci
-    
-    - name: Lint
-      run: npx nx run-many --target=lint --all
-    
-    - name: Build Frontend
-      run: npx nx build dashboard
-    
-    - name: Run Unit Tests
-      run: npx nx test
-    
-    - name: Run Nx Affected
-      run: npx nx affected --target=build
-    
-    - name: Build Storybook
-      run: npx nx run dashboard:build-storybook
-    
-    - name: Deploy Storybook to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@v4
-      if: github.ref == 'refs/heads/main'
-      with:
-        folder: dist/storybook/dashboard
-        branch: gh-pages
 
-  deploy-dev:
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        cache: 'npm'
-    
-    - name: Install Dependencies
-      run: npm ci
-    
-    - name: Build Frontend
-      run: npx nx build dashboard
-    
-    - name: Setup Azure CLI
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-    
-    - name: Deploy to Azure App Service (Dev)
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'vehicle-dashboard-dev'
-        package: 'dist/apps/dashboard'
-    
-    - name: Create Version Tag
-      run: |
-        VERSION=$(date +'%Y.%m.%d.%H%M')
-        git tag v$VERSION
-        git push origin v$VERSION
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Unit Tests
+        run: npm test
+
+      - name: Run Linting
+        run: npm run lint
+
+      - name: Build the Application
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
