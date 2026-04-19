@@ -1,0 +1,16 @@
+{
+  "name": "Vehicle Control Center",
+  "short_name": "Vehicle UI",
+  "description": "Advanced Vehicle Dashboard Interface",
+  "start_url": "/vehicle-ui-dashboard/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "/vehicle-ui-dashboard/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

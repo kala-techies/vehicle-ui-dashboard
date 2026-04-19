@@ -15,9 +15,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",  // 🔧 Changed from "." to "./src" for cleaner imports
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./*"],  // 🔧 Simplified path mapping
+      "@/components/*": ["./components/*"],
+      "@/context/*": ["./context/*"],
+      "@/styles/*": ["./styles/*"]
     }
   },
   "include": ["src"],

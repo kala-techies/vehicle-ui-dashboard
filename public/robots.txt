@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kala-techies.github.io/vehicle-ui-dashboard/sitemap.xml

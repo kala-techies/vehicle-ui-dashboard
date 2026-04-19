@@ -1,8 +1,12 @@
 # 🚗 Vehicle UI Dashboard
 
-A **component-driven** React + Nx monorepo that simulates a modern vehicle dashboard UI.  
+A **component-driven** React + Nx monorepo that simulates a modern vehicle dashboard UI.
 Designed to give **frontend beginners** and **DevOps/Infra engineers** hands-on experience building, testing, and deploying a real-world front-end application with a full CI/CD pipeline.
 
+[![Deploy to GitHub Pages](https://github.com/kala-techies/vehicle-ui-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/kala-techies/vehicle-ui-dashboard/actions/workflows/ci.yml)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-2ea44f)](https://kala-techies.github.io/vehicle-ui-dashboard/)
+
+🔗 **Live Demo:** https://kala-techies.github.io/vehicle-ui-dashboard/  
 🔗 **Repository:** https://github.com/kala-techies/vehicle-ui-dashboard  
 📧 **Contact:** [connectwithkala18@gmail.com](mailto:connectwithkala18@gmail.com)
 
@@ -63,10 +67,10 @@ npm install
 
 ```bash
 # Start the development server
-npm start
+npm run dev
 ```
 
-Open your browser at `http://localhost:4200`.
+Open your browser at `http://localhost:3000/vehicle-ui-dashboard/`.
 
 ---
 
@@ -74,38 +78,50 @@ Open your browser at `http://localhost:4200`.
 
 | Command            | Description                           |
 | ------------------ | ------------------------------------- |
-| `npm start`        | Run the app in development mode       |
+| `npm run dev`      | Run the app in development mode       |
 | `npm run build`    | Build the app for production          |
+| `npm run preview`  | Preview the production build locally  |
 | `npm run lint`     | Lint code with ESLint                 |
 | `npm test`         | Run Jest unit tests                   |
-| `npx nx storybook` | Launch Storybook (component explorer) |
+| `npm run storybook`| Launch Storybook (component explorer) |
 
 ---
 
 ## ⚙️ CI/CD Workflow
 
-This project’s GitHub Actions pipeline has **18 stages**, including:
+This project uses **GitHub Actions** for automated deployment to **GitHub Pages** with the following stages:
 
-1. **Checkout Code**
-2. **Install Dependencies**
-3. **Build Frontend**
-4. **Lint Code**
-5. **Run Unit Tests**
-6. **Nx Affected** (optional)
-7. **Static Analysis** with SonarQube
-8. **Dependency & License Scan** (Snyk / BlackDuck)
-9. **Build Storybook**
-10. **Deploy Storybook**
-11. **Build Infrastructure** (Bicep / Terraform / Pulumi)
-12. **Deploy Infra to Azure**
-13. **Deploy to Development**
-14. **Deploy to Preview/Integration**
-15. **Create Version Tag**
-16. **Deploy to Integration Environment**
-17. **Run E2E Tests** (optional)
-18. **Deploy to Production**
+### Build & Deploy Pipeline
 
-Each stage enforces a security-first approach and fails fast on any vulnerability.
+1. **📥 Checkout Code** - Get the latest code from the repository
+2. **🔧 Setup Node.js** - Install Node.js 18 with npm caching
+3. **📦 Install Dependencies** - Install all npm packages
+4. **🧹 Code Linting** - Run ESLint to check code quality
+5. **🏗️ Build Application** - Compile TypeScript and build for production
+6. **📄 Add .nojekyll** - Ensure GitHub Pages serves all assets correctly
+7. **📤 Upload Artifacts** - Prepare build files for deployment
+8. **🚀 Deploy to GitHub Pages** - Automatically deploy to production
+
+### Deployment URL
+Once deployed, your application will be available at:
+```
+https://[your-username].github.io/vehicle-ui-dashboard/
+```
+
+### Local Development
+```bash
+# Start development server
+npm run dev
+# Opens at http://localhost:3000/vehicle-ui-dashboard/
+```
+
+### Production Build
+```bash
+# Build for production
+npm run build
+# Preview production build
+npm run preview
+```
 
 ---
 

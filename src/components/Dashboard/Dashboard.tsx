@@ -7,8 +7,10 @@ import { MediaControls } from '../MediaControls/MediaControls';
 import { StatusIndicators } from '../StatusIndicators/StatusIndicators';
 import { SettingsPanel } from '../SettingsPanel/SettingsPanel';
 import { WarningPanel } from '../WarningPanel/WarningPanel';
+import { useTheme } from '../../context/ThemeContext';
 
 export function Dashboard() {
+  const { theme } = useTheme();
   const [speed, setSpeed] = useState(0);
   const [fuelLevel] = useState(75);  // Removed setFuelLevel
   const [turnSignal, setTurnSignal] = useState<'left' | 'right' | 'none'>('none');
@@ -48,66 +50,97 @@ export function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      <div className="flex flex-col gap-6 max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="md:col-span-3 bg-gradient-to-r from-blue-500 to-purple-600 p-4 rounded-lg shadow-lg">
-            <h1 className="text-2xl font-bold text-white text-center">Vehicle Dashboard</h1>
-          </div>
-          
-          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
-            <Speedometer speed={speed} maxSpeed={160} />
-            <div className="mt-2">
-              <button 
-                onClick={simulateSpeedChange}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm"
-              >
-                Simulate Speed Change
-              </button>
+      <div className="flex flex-col gap-8 max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-4">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse-slow">
+            🚗 Vehicle Control Center
+          </h1>
+          <p className="text-lg opacity-80 mt-2">Advanced Dashboard Interface</p>
+        </div>
+
+        {/* Main Dashboard Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Left Panel - Gauges */}
+          <div className="lg:col-span-4 space-y-6">
+            <div className={`p-6 rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105 ${
+              theme === 'dark' ? 'glass-dark' : 'glass'
+            }`}>
+              <Speedometer speed={speed} maxSpeed={160} />
+              <div className="mt-4 text-center">
+                <button
+                  onClick={simulateSpeedChange}
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg hover:scale-105"
+                >
+                  🚀 Simulate Speed
+                </button>
+              </div>
+            </div>
+
+            <div className={`p-6 rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105 ${
+              theme === 'dark' ? 'glass-dark' : 'glass'
+            }`}>
+              <FuelGauge level={fuelLevel} />
             </div>
           </div>
-          
-          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
-            <FuelGauge level={fuelLevel} />
-          </div>
-          
-          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
-            <TurnSignals active={turnSignal} />
-            <div className="mt-2">
-              <button 
-                onClick={simulateTurnSignal}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm"
-              >
-                Toggle Turn Signal
-              </button>
+
+          {/* Center Panel - Main Controls */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className={`p-6 rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105 ${
+              theme === 'dark' ? 'glass-dark' : 'glass'
+            }`}>
+              <ClimateControl />
+            </div>
+
+            <div className={`p-6 rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105 ${
+              theme === 'dark' ? 'glass-dark' : 'glass'
+            }`}>
+              <MediaControls />
             </div>
           </div>
-          
-          <div className="md:col-span-2 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
-            <ClimateControl />
-          </div>
-          
-          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
-            <MediaControls />
-          </div>
-          
-          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
-            <StatusIndicators batteryLevel={batteryLevel} headlightsOn={headlightsOn} />
-          </div>
-          
-          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
-            <SettingsPanel />
-          </div>
-          
-          <div className="md:col-span-3 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
-            <WarningPanel warnings={warnings} />
-            <div className="mt-2">
-              <button 
-                onClick={simulateWarning}
-                className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm"
-              >
-                Simulate Warning
-              </button>
+
+          {/* Right Panel - Status and Controls */}
+          <div className="lg:col-span-3 space-y-6">
+            <div className={`p-6 rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105 ${
+              theme === 'dark' ? 'glass-dark' : 'glass'
+            }`}>
+              <TurnSignals active={turnSignal} />
+              <div className="mt-4 text-center">
+                <button
+                  onClick={simulateTurnSignal}
+                  className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg hover:scale-105"
+                >
+                  🔄 Toggle Signals
+                </button>
+              </div>
             </div>
+
+            <div className={`p-6 rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105 ${
+              theme === 'dark' ? 'glass-dark' : 'glass'
+            }`}>
+              <StatusIndicators batteryLevel={batteryLevel} headlightsOn={headlightsOn} />
+            </div>
+
+            <div className={`p-6 rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105 ${
+              theme === 'dark' ? 'glass-dark' : 'glass'
+            }`}>
+              <SettingsPanel />
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Panel - Warnings */}
+        <div className={`p-6 rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105 ${
+          theme === 'dark' ? 'glass-dark' : 'glass'
+        }`}>
+          <WarningPanel warnings={warnings} />
+          <div className="mt-4 text-center">
+            <button
+              onClick={simulateWarning}
+              className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg hover:scale-105"
+            >
+              ⚠️ Simulate Warning
+            </button>
           </div>
         </div>
       </div>
